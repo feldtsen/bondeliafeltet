@@ -1,19 +1,86 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import HeaderFooter from './HeaderFooter';
+import MainContent from './MainContent'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {fade} from 'material-ui/utils/colorManipulator';
+import {fullWhite, fullBlack, teal600} from 'material-ui/styles/colors';
+
+
+
+
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
+
+const mainTheme = getMuiTheme({
+    appBar: {
+        textColor: fullWhite,
+        canvasColor: fullBlack,
+
+    },
+    tabs: {
+      textColor: fullWhite,
+        primary1Color: fullBlack
+    },
+    palette: {
+        primary1Color: teal600,
+        textColor: fullWhite,
+        secondaryTextColor: fade(fullWhite, 0.7),
+        alternateTextColor: fullWhite,
+        canvasColor: '#303030',
+        borderColor: fade(fullWhite, 0.3),
+        disabledColor: fade(fullWhite, 0.3),
+        pickerHeaderColor: fade(fullWhite, 0.12),
+        clockCircleColor: fade(fullWhite, 0.12),
+    }
+});
+
 class App extends Component {
+    constructor(){
+        super();
+        this.state = {
+            meta: {
+                width: window.innerWidth,
+                height: window.innerHeight
+            },
+            slideIndex: 0
+        }
+    }
+
+    componentDidMount(){
+        window.addEventListener("resize", this.responsiveUpdater, {passive:true});
+    }
+
+    componentWillUnmount(){
+        window.removeEventListener("resize", this.responsiveUpdater);
+    }
+
+    slideChanger = (value) => {
+        this.setState({
+            slideIndex: value,
+        });
+    };
+
+    responsiveUpdater = () => {
+        const meta = this.state.meta;
+        meta.width = window.innerWidth;
+        meta.height = window.innerHeight;
+        this.setState({meta});
+    };
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider muiTheme={mainTheme}>
+          <div>
+              <HeaderFooter meta={this.state.meta} handleChange={this.slideChanger} slideIndex={this.state.slideIndex}/>
+              <MainContent handleChange={this.slideChanger} slideIndex={this.state.slideIndex}/>
+          </div>
+
+      </MuiThemeProvider>
     );
   }
 }
