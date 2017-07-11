@@ -11,16 +11,16 @@ export default class MainContent extends Component {
                     index={this.props.slideIndex}
                     onChangeIndex={this.props.handleChange}
                 >
-                    <div>
+                    <section>
                         <h2>Tabs with slide effect</h2>
                         Swipe to see the next slide.<br />
-                    </div>
-                    <div >
+                    </section>
+                    <section >
                         slide n°2
-                    </div>
-                    <div>
+                    </section>
+                    <section>
                         slide n°3
-                    </div>
+                    </section>
                 </SwipeableViews>
             </main>
         );

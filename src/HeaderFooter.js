@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 import AppBar from 'material-ui/AppBar';
-import {fullWhite} from 'material-ui/styles/colors';
+import {teal800, tealA400} from 'material-ui/styles/colors';
 
 
 
@@ -22,7 +22,8 @@ export default class HeaderFooter extends Component {
                 <Tabs
                     onChange={this.props.handleChange}
                     value={this.props.slideIndex}
-                    inkBarStyle={{backgroundColor: fullWhite}}
+                    inkBarStyle={{backgroundColor: tealA400}}
+                    tabItemContainerStyle ={{background: teal800}}
                 >
                     <Tab
                         icon={<FontIcon><i className="fa fa-newspaper-o" aria-hidden="true"></i></FontIcon>}

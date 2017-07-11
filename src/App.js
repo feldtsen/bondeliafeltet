@@ -7,7 +7,7 @@ import MainContent from './MainContent'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {fade} from 'material-ui/utils/colorManipulator';
-import {fullWhite, fullBlack, teal600} from 'material-ui/styles/colors';
+import {fullWhite, fullBlack, teal600, tealA400} from 'material-ui/styles/colors';
 
 
 
@@ -30,7 +30,7 @@ const mainTheme = getMuiTheme({
         primary1Color: teal600,
         textColor: fullWhite,
         secondaryTextColor: fade(fullWhite, 0.7),
-        alternateTextColor: fullWhite,
+        alternateTextColor: tealA400,
         canvasColor: '#303030',
         borderColor: fade(fullWhite, 0.3),
         disabledColor: fade(fullWhite, 0.3),
