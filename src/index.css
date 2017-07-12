@@ -1,5 +1,5 @@
 
-body, h2 {
+body, h2,fa-bars {
   margin: 0;
   padding: 0;
 }
@@ -12,4 +12,8 @@ section {
 body {
   font-family: sans-serif;
   background-color: rgba(50, 50, 50, 1);
+}
+
+.fa-bars {
+  margin-top: 0.35em;
 }
