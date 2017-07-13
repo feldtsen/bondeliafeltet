@@ -20,7 +20,7 @@ export default class HeaderFooter extends Component {
                 {
                     this.props.meta.width < 700 ?
                         <AppBar
-                            title={<FontIcon><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
+                            title={<FontIcon style={{ color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
                             showMenuIconButton={false}
                             onTitleTouchTap={this.reloadSite}
                             style={{cursor: 'pointer'}}

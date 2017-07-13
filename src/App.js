@@ -18,21 +18,16 @@ injectTapEventPlugin();
 
 const mainTheme = getMuiTheme({
     fontFamily: "'Ubuntu Condensed', sans-serif",
-    appBar: {
-        textColor: fullWhite,
-        canvasColor: fullBlack,
-
-    },
     tabs: {
       textColor: fullWhite,
-        primary1Color: fullBlack
+        primary1Color: fullWhite
     },
     palette: {
         primary1Color: teal600,
-        textColor: fullWhite,
+        textColor: fullBlack,
         secondaryTextColor: fade(fullWhite, 0.7),
         alternateTextColor: tealA400,
-        canvasColor: '#303030',
+        canvasColor: 'rgba(255, 255, 255, 1)',
         borderColor: fade(fullWhite, 0.3),
         disabledColor: fade(fullWhite, 0.3),
         pickerHeaderColor: fade(fullWhite, 0.12),
