@@ -17,6 +17,7 @@ injectTapEventPlugin();
 
 
 const mainTheme = getMuiTheme({
+    fontFamily: "'Ubuntu Condensed', sans-serif",
     appBar: {
         textColor: fullWhite,
         canvasColor: fullBlack,

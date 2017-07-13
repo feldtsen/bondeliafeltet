@@ -1,19 +1,9 @@
 
-body, h2,fa-bars {
+body, h2 {
   margin: 0;
   padding: 0;
 }
 
-section {
-  height:100%;
-}
-
-
 body {
-  font-family: sans-serif;
   background-color: rgba(50, 50, 50, 1);
-}
-
-.fa-bars {
-  margin-top: 0.35em;
 }
