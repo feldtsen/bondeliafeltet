@@ -6,7 +6,13 @@ body {
 }
 
 .container-fluid {
-  padding: .8rem !important;
+  padding: 0 .8rem 0 .8rem !important;
+}
+
+.mediaImage {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @media (min-width: 2556px) {

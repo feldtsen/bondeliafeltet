@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Card, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardTitle, CardText, CardMedia} from 'material-ui/Card';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import FadeIn from 'react-fade-in';
 
@@ -10,7 +10,28 @@ export default class MainContent extends Component {
         this.state = {
             allNews: [
                 {
-                    title: 'Velkommen til Bondeliafeltet.no.',
+                    title: 'Velkommen til Bondeliafeltet.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image: 'https://images.unsplash.com/photo-1490598000245-075175152d25?dpr=1&auto=compress,format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Ny start, nye muligheter.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image: 'https://images.unsplash.com/photo-1497107261019-ad37b3b579ee?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Asfaltering.',
+                    image:'https://images.unsplash.com/photo-1483030096298-4ca126b58199?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
@@ -21,6 +42,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image: 'https://images.unsplash.com/photo-1496737018672-b1a6be2e949c?dpr=1&auto=compress,format&fit=crop&w=767&h=431&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -30,6 +52,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image:'https://images.unsplash.com/photo-1471644518115-1f02e9819854?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -39,6 +62,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image:'https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=1&auto=compress,format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -48,24 +72,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
-                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
-                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
-                    ' ut veritatis, voluptate voluptatibus. Officiis.',
-
-                },
-                {
-                    title: 'Velkommen til Bondeliafeltet.no.',
-                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
-                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
-                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
-                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
-                    ' ut veritatis, voluptate voluptatibus. Officiis.',
-
-                },
-                {
-                    title: 'Velkommen til Bondeliafeltet.no.',
-                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    image:'https://images.unsplash.com/photo-1491446559770-3fc03a481cdf?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -83,34 +90,16 @@ export default class MainContent extends Component {
         if (index === 0) {
             page =
                 <Grid fluid>
-                    <Row around="xs">
-
-                        <Col xs={12} md={4}>
-                            <FadeIn>
-                                <Card style={{margin: '.3em 0 .3em 0'}}>
-                                    <CardTitle style={{padding: '3%'}} title='Side'
-                                               subtitle='sidesub'/>
-                                    <CardText style={{padding: '0 3% 3% 3%'}}>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam
-                                        asperiores
-                                        dolor dolorem esse eum inventore ipsa itaque, laboriosam laborum libero odio,
-                                        reprehenderit soluta sunt totam ut, voluptatum. Fugit, hic?
-                                    </CardText>
-                                </Card>
-                            </FadeIn>
-                        </Col>
-
-                        <Col xs={12} md={8} style={{
-                            overflowY: this.props.meta.width > 1024 ? 'scroll' : '',
-                            height: this.props.meta.width > 1024 ? this.props.meta.height * 0.89 : ''
-                        }}>
+                    <Row around="xs" style={{marginTop: '4%'}}>
+                        <Col xs={12} md={8} >
                             <Row>
                                 <Col xs={12}>
                                     <FadeIn>
                                         {
                                             this.state.allNews.map((news, i) => {
                                                 return (
-                                                    <Card key={`news${i}`} style={{margin: '.3em 0 .3em 0'}}>
+                                                    <Card key={`news${i}`} style={{margin: '.3em 0 1em 0'}}>
+                                                        <CardMedia className="mediaImage" style={{height: '40vh', backgroundImage: `url(${news.image})`}}/>
                                                         <CardTitle style={{padding: '3%'}} title={news.title}
                                                                    subtitle={news.subtitle}/>
                                                         <CardText style={{padding: '0 3% 3% 3%'}}>
