@@ -37,7 +37,7 @@ export default class HeaderFooter extends Component {
                             <Tab
                                 icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i> Bondeliafeltet</FontIcon>}
                                 onActive={this.reloadSite}
-                                value={3}
+                                value={0}
                             />
                             : ''
                     }

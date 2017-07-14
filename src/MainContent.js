@@ -1,146 +1,139 @@
 import React, {Component} from 'react';
 import './App.css';
-import SwipeableViews from 'react-swipeable-views';
-import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import {Card, CardTitle, CardText} from 'material-ui/Card';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 
-
-
-
 export default class MainContent extends Component {
+    constructor() {
+        super();
+        this.state = {
+            allNews: [
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+                {
+                    title: 'Velkommen til Bondeliafeltet.no.',
+                    subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
+                    'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
+                    'illum incidunt libero maiores minima quam repudiandae sequi similique' +
+                    ' ut veritatis, voluptate voluptatibus. Officiis.',
+
+                },
+
+            ]
+        }
+    }
+
     render() {
-        return (
-            <main>
-                <SwipeableViews
-                    index={this.props.slideIndex}
-                    onChangeIndex={this.props.handleChange}
-                >
-                    <Grid fluid>
-                        <Row top="xs">
-                            <Col md={12} lg={6} >
-                                <Card style={{margin:'1em 0 1em 0'}}>
-                                    <CardTitle title="Asfaltering pågår!" subtitle="Dette vil pågå til............" />
-                                    <CardText>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    </CardText>
-                                    <CardActions>
-                                        <FlatButton label="Action1" />
-                                        <FlatButton label="Action2" />
-                                    </CardActions>
-                                </Card>
-                            </Col>
-                            <Col md={12} lg={6} >
-                                <Card style={{margin:'1em 0 1em 0'}}>
-                                    <CardTitle title="Klagemål" subtitle="Dette vil pågå til............" />
-                                    <CardText>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    </CardText>
-                                    <CardActions>
-                                        <FlatButton label="Action1" />
-                                        <FlatButton label="Action2" />
-                                    </CardActions>
-                                </Card>
-                            </Col>
-                            <Col md={12} lg={6} >
-                                <Card style={{margin:'1em 0 1em 0'}}>
-                                    <CardTitle title="Søppel" subtitle="Dette vil pågå til............" />
-                                    <CardText>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                        Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                        Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    </CardText>
-                                    <CardActions>
-                                        <FlatButton label="Action1" />
-                                        <FlatButton label="Action2" />
-                                    </CardActions>
-                                </Card>
-                            </Col> <Col md={12} lg={6} >
-                            <Card style={{margin:'1em 0 1em 0'}}>
-                                <CardTitle title="Frak" subtitle="Dette vil pågå til............" />
-                                <CardText>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+        const index = this.props.slideIndex;
+        let page;
+        if (index === 0) {
+            page =
+                <Grid fluid>
+                    <Row around="xs">
+
+                        <Col xs={12} md={4}>
+                            <Card style={{margin: '.3em 0 .3em 0'}}>
+                                <CardTitle style={{padding: '3%'}} title='Side'
+                                           subtitle='sidesub'/>
+                                <CardText style={{padding: '0 3% 3% 3%'}}>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam asperiores
+                                    dolor dolorem esse eum inventore ipsa itaque, laboriosam laborum libero odio,
+                                    reprehenderit soluta sunt totam ut, voluptatum. Fugit, hic?
                                 </CardText>
-                                <CardActions>
-                                    <FlatButton label="Action1" />
-                                    <FlatButton label="Action2" />
-                                </CardActions>
-                            </Card>
-                        </Col> <Col md={12} lg={6} >
-                            <Card style={{margin:'1em 0 1em 0'}}>
-                                <CardTitle title="Asfaltering pågår!" subtitle="Dette vil pågå til............" />
-                                <CardText>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                </CardText>
-                                <CardActions>
-                                    <FlatButton label="Action1" />
-                                    <FlatButton label="Action2" />
-                                </CardActions>
-                            </Card>
-                        </Col> <Col md={12} lg={6} >
-                            <Card style={{margin: '1em 0 1em 0'}}>
-                                <CardTitle title="Asfaltering pågår!" subtitle="Dette vil pågå til............" />
-                                <CardText>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                                    Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                                    Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
-                                </CardText>
-                                <CardActions>
-                                    <FlatButton label="Action1" />
-                                    <FlatButton label="Action2" />
-                                </CardActions>
                             </Card>
                         </Col>
 
+                        <Col xs={12} md={8} style={{overflowY: this.props.meta > 700 ? 'scroll':'', height: this.props.meta > 700?this.props.meta.height *0.89:''}}>
+                            <Row >
+                                {
+                                    this.state.allNews.map((news, i) => {
+                                        return (
+                                            <Col xs={12} key={`news${i}`} style={{margin: '.3em 0 .3em 0'}}>
+                                                <Card key={`news${i}`}>
+                                                    <CardTitle style={{padding: '3%'}} title={news.title}
+                                                               subtitle={news.subtitle}/>
+                                                    <CardText style={{padding: '0 3% 3% 3%'}}>
+                                                        {news.text}
+                                                    </CardText>
+                                                </Card>
+                                            </Col>
+                                        )
+                                    })
+                                }
+                            </Row>
+                        </Col>
 
-
-                        </Row>
-                    </Grid>
-                    <section >
-                        slide n°2
-                    </section>
-                    <section>
-                        slide n°3
-                    </section>
-                </SwipeableViews>
+                    </Row>
+                </Grid>
+        } else if (index === 1) {
+            page =
+                <section>
+                    slide n°2
+                </section>
+        } else {
+            page =
+                <section>
+                    slide n°3
+                </section>
+        }
+        return (
+            <main>
+                {
+                    page
+                }
             </main>
         );
     }

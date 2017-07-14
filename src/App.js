@@ -73,7 +73,7 @@ class App extends Component {
       <MuiThemeProvider muiTheme={mainTheme}>
           <div>
               <HeaderFooter meta={this.state.meta} handleChange={this.slideChanger} slideIndex={this.state.slideIndex}/>
-              <MainContent handleChange={this.slideChanger} slideIndex={this.state.slideIndex}/>
+              <MainContent meta={this.state.meta} handleChange={this.slideChanger} slideIndex={this.state.slideIndex}/>
           </div>
 
       </MuiThemeProvider>
