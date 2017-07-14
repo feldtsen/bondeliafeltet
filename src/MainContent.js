@@ -96,7 +96,7 @@ export default class MainContent extends Component {
                             </Card>
                         </Col>
 
-                        <Col xs={12} md={8} style={{overflowY: this.props.meta > 700 ? 'scroll':'', height: this.props.meta > 700?this.props.meta.height *0.89:''}}>
+                        <Col xs={12} md={8} style={{overflowY: this.props.meta.width > 700 ? 'scroll':'', height: this.props.meta.width > 700?this.props.meta.height *0.89:''}}>
                             <Row >
                                 {
                                     this.state.allNews.map((news, i) => {
