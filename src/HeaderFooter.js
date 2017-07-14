@@ -16,7 +16,8 @@ export default class HeaderFooter extends Component {
         super();
         this.state={
             opacity: 1,
-            pointerEvents: ''
+            pointerEvents: '',
+            y: 0
         }
     }
 
@@ -32,6 +33,13 @@ export default class HeaderFooter extends Component {
         window.removeEventListener("touchmove", this.handleMove);
     }
 
+    handleScroll = (e) => {
+        const direction = (e.detail<0 || e.wheelDelta>0) ? 1 : -1;
+        if(direction > 0 && this.state.opacity !== 1)
+            this.setState({opacity: 1, pointerEvents: ''});
+        else if (direction < 0 && this.state.opacity !== 0)
+            this.setState({opacity: 0, pointerEvents: 'none'});
+    };
     handleKeydown = (e) =>{
         let key = e.keyCode;
         if (key === 38 && this.state.opacity !== 1){
@@ -39,6 +47,17 @@ export default class HeaderFooter extends Component {
         } else if (key === 40  && this.state.opacity !== 0){
             this.setState({opacity: 0, pointerEvents: 'none'})
         }
+    };
+    handleMove = (e) => {
+        let ny = e.touches[0].screenY;
+            if (ny > this.state.y) {
+                this.setState({opacity: 1, pointerEvents: ''})
+            } else {
+                this.setState({opacity: 0, pointerEvents: 'none'})
+            }
+            this.setState({y:ny})
+
+
     };
 
     reloadSite = () => {
