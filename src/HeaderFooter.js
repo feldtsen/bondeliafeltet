@@ -49,15 +49,12 @@ export default class HeaderFooter extends Component {
         }
     };
     handleMove = (e) => {
-        let ny = e.touches[0].screenY;
-            if (ny > this.state.y) {
-                this.setState({opacity: 1, pointerEvents: ''})
-            } else {
-                this.setState({opacity: 0, pointerEvents: 'none'})
-            }
-            this.setState({y:ny})
-
-
+        let nY = e.touches[0].screenY;
+        if (nY > this.state.y) {
+            this.setState({opacity: 1, pointerEvents: '', y:nY})
+        } else {
+            this.setState({opacity: 0, pointerEvents: 'none', y:nY})
+        }
     };
 
     reloadSite = () => {
@@ -96,8 +93,7 @@ export default class HeaderFooter extends Component {
                     <Tab
                         icon={<FontIcon><i className="fa fa-newspaper-o" aria-hidden="true"></i></FontIcon>}
                         label="Nyheter"
-                        value={0}
-                    />
+                        value={0}/>
                     <Tab
                         icon={<FontIcon><i className="fa fa-calendar" aria-hidden="true"></i></FontIcon>}
                         label="Datoer"
