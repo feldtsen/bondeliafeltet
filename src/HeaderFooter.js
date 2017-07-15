@@ -8,8 +8,6 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import AppBar from 'material-ui/AppBar';
 import {teal800, tealA400} from 'material-ui/styles/colors';
 
-const wheelevt=(/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "wheel";
-
 
 export default class HeaderFooter extends Component {
     constructor(){
@@ -22,39 +20,17 @@ export default class HeaderFooter extends Component {
     }
 
     componentDidMount(){
-        window.addEventListener(wheelevt, this.handleScroll, {passive: true});
-        window.addEventListener("keydown", this.handleKeydown, {passive:true});
-        window.addEventListener("touchmove", this.handleMove, {passive:true});
+        window.addEventListener('scroll', this.scrollDirection, {passive: true});
     }
 
     componentWillUnmount(){
-        window.removeEventListener(wheelevt, this.handleScroll);
-        window.removeEventListener("keydown", this.handleKeydown);
-        window.removeEventListener("touchmove", this.handleMove);
+        window.removeEventListener('scroll', this.scrollDirection);
     }
 
-    handleScroll = (e) => {
-        const direction = (e.detail<0 || e.wheelDelta>0) ? 1 : -1;
-        if(direction > 0 && this.state.opacity !== 1)
-            this.setState({opacity: 1, pointerEvents: ''});
-        else if (direction < 0 && this.state.opacity !== 0)
-            this.setState({opacity: 0, pointerEvents: 'none'});
-    };
-    handleKeydown = (e) =>{
-        let key = e.keyCode;
-        if (key === 38 && this.state.opacity !== 1){
-            this.setState({opacity: 1, pointerEvents: ''})
-        } else if (key === 40  && this.state.opacity !== 0){
-            this.setState({opacity: 0, pointerEvents: 'none'})
-        }
-    };
-    handleMove = (e) => {
-        let nY = e.touches[0].screenY;
-        if (nY > this.state.y) {
-            this.setState({opacity: 1, pointerEvents: '', y:nY})
-        } else {
-            this.setState({opacity: 0, pointerEvents: 'none', y:nY})
-        }
+    scrollDirection = () => {
+      window.scrollY > this.state.y ?
+          this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}):
+          this.setState({opacity: 1, pointerEvents: '', y: window.scrollY});
     };
 
     reloadSite = () => {
