@@ -1,8 +1,7 @@
 body {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   background-color: rgba(240, 240, 240, 1);
-  max-width: 2556px;
 }
 
 .container-fluid {
@@ -10,12 +9,13 @@ body {
 }
 
 .mediaImage {
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 30em;
+  height: 50vh;
 }
-
-@media (min-width: 2556px) {
+@media (min-width: 2556px){
   body{
     margin: 1em auto;
   }

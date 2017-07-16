@@ -31,7 +31,7 @@ export default class MainContent extends Component {
                 },
                 {
                     title: 'Asfaltering.',
-                    image:'https://images.unsplash.com/photo-1483030096298-4ca126b58199?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
+                    image: 'https://images.unsplash.com/photo-1483030096298-4ca126b58199?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
@@ -52,7 +52,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
-                    image:'https://images.unsplash.com/photo-1471644518115-1f02e9819854?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
+                    image: 'https://images.unsplash.com/photo-1471644518115-1f02e9819854?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -62,7 +62,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
-                    image:'https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=1&auto=compress,format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=',
+                    image: 'https://images.unsplash.com/photo-1475518845976-0fd87b7e4e5d?dpr=1&auto=compress,format&fit=crop&w=767&h=512&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -72,7 +72,7 @@ export default class MainContent extends Component {
                 {
                     title: 'Velkommen til Bondeliafeltet.no.',
                     subtitle: 'Her kommer det litt informasjon om hva meningen med nettsiden er:',
-                    image:'https://images.unsplash.com/photo-1491446559770-3fc03a481cdf?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
+                    image: 'https://images.unsplash.com/photo-1491446559770-3fc03a481cdf?dpr=1&auto=compress,format&fit=crop&w=767&h=511&q=80&cs=tinysrgb&crop=',
                     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. ' +
                     'A accusamus aliquam assumenda beatae dignissimos, dolore, expedita ' +
                     'illum incidunt libero maiores minima quam repudiandae sequi similique' +
@@ -90,30 +90,26 @@ export default class MainContent extends Component {
         if (index === 0) {
             page =
                 <Grid fluid>
-                    <Row around="xs" style={{marginTop: '4%'}}>
-                        <Col xs={12} md={8} >
-                            <Row>
-                                <Col xs={12}>
-                                    <FadeIn>
-                                        {
-                                            this.state.allNews.map((news, i) => {
-                                                return (
-                                                    <Card key={`news${i}`} style={{margin: '.3em 0 1em 0'}}>
-                                                        <CardMedia className="mediaImage" style={{height: '40vh', backgroundImage: `url(${news.image})`}}/>
-                                                        <CardTitle style={{padding: '3%'}} title={news.title}
-                                                                   subtitle={news.subtitle}/>
-                                                        <CardText style={{padding: '0 3% 3% 3%'}}>
-                                                            {news.text}
-                                                        </CardText>
-                                                    </Card>
-                                                )
-                                            })
-                                        }
-                                    </FadeIn>
-                                </Col>
-                            </Row>
+                    <Row around="xs" style={{marginTop: '6%'}}>
+                        <Col xs={12} md={8}>
+                            <FadeIn>
+                                {
+                                    this.state.allNews.map((news, i) => {
+                                        return (
+                                            <Card key={`news${i}`} style={{margin: '.3em 0 1em 0'}}>
+                                                <CardMedia className="mediaImage"
+                                                           style={{backgroundImage: `url(${news.image})`}}/>
+                                                <CardTitle style={{padding: '3%'}} title={news.title}
+                                                           subtitle={news.subtitle}/>
+                                                <CardText style={{padding: '0 3% 3% 3%'}}>
+                                                    {news.text}
+                                                </CardText>
+                                            </Card>
+                                        )
+                                    })
+                                }
+                            </FadeIn>
                         </Col>
-
                     </Row>
                 </Grid>
         } else if (index === 1) {

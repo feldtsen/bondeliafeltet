@@ -10,27 +10,27 @@ import {teal800, tealA400} from 'material-ui/styles/colors';
 
 
 export default class HeaderFooter extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
+        this.state = {
             opacity: 1,
             pointerEvents: '',
             y: 0
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         window.addEventListener('scroll', this.scrollDirection, {passive: true});
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollDirection);
     }
 
     scrollDirection = () => {
-      window.scrollY > this.state.y  && window.scrollY !== 0?
-          this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}):
-          this.setState({opacity: 1, pointerEvents: '', y: window.scrollY});
+        window.scrollY > this.state.y ?
+            this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}):
+            this.setState({opacity: 1, pointerEvents: '', y: window.scrollY});
     };
 
     reloadSite = () => {
@@ -43,7 +43,7 @@ export default class HeaderFooter extends Component {
                 {
                     this.props.meta.width < 700 ?
                         <AppBar
-                            title={<FontIcon style={{ color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
+                            title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
                             showMenuIconButton={false}
                             onTitleTouchTap={this.reloadSite}
                             style={{cursor: 'pointer'}}
@@ -54,7 +54,16 @@ export default class HeaderFooter extends Component {
                     value={this.props.slideIndex}
                     inkBarStyle={{backgroundColor: tealA400}}
                     tabItemContainerStyle={{background: teal800}}
-                    style={{position:  'fixed', pointerEvents: this.state.pointerEvents,transition: '.45s', opacity: this.state.opacity, width: '100%', bottom: 0, top:  this.props.meta.width > 700 ? 0 : '', zIndex: 1}}
+                    style={{
+                        position: 'fixed',
+                        pointerEvents: this.state.pointerEvents,
+                        transition: '.45s',
+                        width: '100%',
+                        opacity: this.state.opacity,
+                        bottom: this.props.meta.width > 700 ? '' : 0,
+                        top: this.props.meta.width > 700 ? 0 : '',
+                        zIndex: 1
+                    }}
 
                 >
                     {
