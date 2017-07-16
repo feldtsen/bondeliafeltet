@@ -6,6 +6,8 @@ body {
 
 .container-fluid {
   padding: 0 .8rem 0 .8rem !important;
+  -webkit-animation: fade-in .7s;
+  animation: fade-in .7s;
 }
 
 .mediaImage {
@@ -15,8 +17,34 @@ body {
   height: 30em;
   height: 50vh;
 }
-@media (min-width: 2556px){
-  body{
+@media (min-width: 2556px) {
+  body {
     margin: 1em auto;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(1%);
+    transform: translateY(1%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(1%);
+    transform: translateY(1%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+    transform: translateY(0%);
   }
 }

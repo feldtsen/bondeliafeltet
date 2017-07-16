@@ -28,7 +28,7 @@ export default class HeaderFooter extends Component {
     }
 
     scrollDirection = () => {
-        window.scrollY > this.state.y ?
+        window.scrollY > this.state.y && window.scrollY > 0?
             this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}):
             this.setState({opacity: 1, pointerEvents: '', y: window.scrollY});
     };

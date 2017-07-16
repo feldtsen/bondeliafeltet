@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Card, CardTitle, CardText, CardMedia} from 'material-ui/Card';
-import {Grid, Row, Col} from 'react-flexbox-grid';
-import FadeIn from 'react-fade-in';
+import News from './Pages/News';
+import Calendar from './Pages/Calendar'
+import Documents from './Pages/Documents'
 
 export default class MainContent extends Component {
     constructor() {
@@ -87,42 +87,9 @@ export default class MainContent extends Component {
     render() {
         const index = this.props.slideIndex;
         let page;
-        if (index === 0) {
-            page =
-                <Grid fluid>
-                    <Row around="xs" style={{marginTop: '6%'}}>
-                        <Col xs={12} md={8}>
-                            <FadeIn>
-                                {
-                                    this.state.allNews.map((news, i) => {
-                                        return (
-                                            <Card key={`news${i}`} style={{margin: '.3em 0 1em 0'}}>
-                                                <CardMedia className="mediaImage"
-                                                           style={{backgroundImage: `url(${news.image})`}}/>
-                                                <CardTitle style={{padding: '3%'}} title={news.title}
-                                                           subtitle={news.subtitle}/>
-                                                <CardText style={{padding: '0 3% 3% 3%'}}>
-                                                    {news.text}
-                                                </CardText>
-                                            </Card>
-                                        )
-                                    })
-                                }
-                            </FadeIn>
-                        </Col>
-                    </Row>
-                </Grid>
-        } else if (index === 1) {
-            page =
-                <section>
-                    slide n°2
-                </section>
-        } else {
-            page =
-                <section>
-                    slide n°3
-                </section>
-        }
+        if (index === 0) page = <News allNews={this.state.allNews}/>;
+        else if (index === 1) page = <Calendar allNews={this.state.allNews}/>;
+        else page = <Documents allNews={this.state.allNews}/>;
         return (
             <main>
                 {
