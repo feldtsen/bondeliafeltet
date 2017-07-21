@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './App.css';
-import './bondeliafeltetPalette.css'
 import FontIcon from 'material-ui/FontIcon';
 
 
@@ -28,8 +27,8 @@ export default class HeaderFooter extends Component {
     }
 
     scrollDirection = () => {
-        window.scrollY > this.state.y && window.scrollY > 0?
-            this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}):
+        window.scrollY > this.state.y && window.scrollY > 0 ?
+            this.setState({opacity: 0, pointerEvents: 'none', y: window.scrollY}) :
             this.setState({opacity: 1, pointerEvents: '', y: window.scrollY});
     };
 
@@ -43,11 +42,13 @@ export default class HeaderFooter extends Component {
                 {
                     this.props.meta.width < 700 ?
                         <AppBar
-                            title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
+                            title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home"
+                                                                                      aria-hidden="true"></i>
+                                BONDELIAFELTET</FontIcon>}
                             showMenuIconButton={false}
                             onTitleTouchTap={this.reloadSite}
-                            style={{cursor: 'pointer'}}
-                        /> : ''
+                            style={{cursor: 'pointer', background: '#00897B'}}
+                        /> : <AppBar style={{zIndex: -1, background: 'rgb(240, 240, 240)'}} zDepth={0} showMenuIconButton={false} />
                 }
                 <Tabs
                     onChange={this.props.handleChange}
@@ -69,7 +70,8 @@ export default class HeaderFooter extends Component {
                     {
                         this.props.meta.width > 700 ?
                             <Tab
-                                icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i> Bondeliafeltet</FontIcon>}
+                                icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i>
+                                    Bondeliafeltet</FontIcon>}
                                 onActive={this.reloadSite}
                                 value={0}
                             />
@@ -88,7 +90,6 @@ export default class HeaderFooter extends Component {
                         label="Dokumenter"
                         value={2}/>
                 </Tabs>
-
             </header>
         );
     }

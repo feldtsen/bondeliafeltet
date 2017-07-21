@@ -1,29 +1,28 @@
 import React from 'react';
 import {Card, CardTitle, CardText, CardMedia} from 'material-ui/Card';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import {Row, Col} from 'react-flexbox-grid';
 
 export default function News(props) {
     return (
-        <Grid fluid>
-            <Row around="xs" style={{marginTop: '6%'}}>
-                <Col xs={12} md={8}>
-                    {
-                        props.allNews.map((news, i) => {
-                            return (
-                                <Card key={`news${i}`} style={{margin: '.3em 0 1em 0'}}>
-                                    <CardMedia className="mediaImage"
-                                               style={{backgroundImage: `url(${news.image})`}}/>
-                                    <CardTitle style={{padding: '3%'}} title={news.title}
-                                               subtitle={news.subtitle}/>
-                                    <CardText style={{padding: '0 3% 3% 3%'}}>
-                                        {news.text}
-                                    </CardText>
-                                </Card>
-                            )
-                        })
-                    }
-                </Col>
-            </Row>
-        </Grid>
+        <Row around="xs" className='fadein'>
+            {
+                Object.keys(props.newsDB).reverse().map((newsId, i) => {
+                    let news = props.newsDB[newsId];
+                    return (
+                        <Col key={`news${i}`} xs={12} md={8}>
+                            <Card style={{margin: '.3em 0 1em 0'}}>
+                                <CardMedia className="mediaImage"
+                                           style={{backgroundImage: `url(${news.imageUrl})`}}/>
+                                <CardTitle style={{padding: '3%'}} title={news.title}
+                                           subtitle={`publisert ${news.date}`}/>
+                                <CardText style={{padding: '0 3% 3% 3%'}}>
+                                    {news.text}
+                                </CardText>
+                            </Card>
+                        </Col>
+                    )
+                })
+            }
+        </Row>
     )
 }
