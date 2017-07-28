@@ -30,7 +30,6 @@ export default class MainContent extends Component {
 
         maincontent.on('value', snap => {
             let newsDB = snap.val() ? snap.val().news : {};
-            console.log(newsDB);
             this.setState({
                 newsDB: newsDB
             });
@@ -48,7 +47,7 @@ export default class MainContent extends Component {
         const popup = this.state.popup;
         let page, tool, admin;
         if (index === 0) page = <News newsDB={this.state.newsDB}/>;
-        else if (index === 1) page = <Calendar newsDB={this.state.newsDB} width={this.props.meta.width}/>;
+        else if (index === 1) page = <Calendar newsDB={this.state.newsDB} width={this.props.meta.width} height={this.props.meta.height}/>;
         else if (index === 2) page = <Documents newsDB={this.state.newsDB}/>;
 
         if (popup.addNewsOpen) tool = <AddNews open={this.state.popup.addNewsOpen} toggleAddNews={this.toggleAddNews} />;

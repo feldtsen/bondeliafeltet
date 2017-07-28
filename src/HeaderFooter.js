@@ -37,18 +37,21 @@ export default class HeaderFooter extends Component {
     };
 
     render() {
+        let showBrandHeader;
+        if (this.props.slideIndex === 0)
+            showBrandHeader = <AppBar
+                title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i>BONDELIAFELTET</FontIcon>}
+                showMenuIconButton={false}
+                onTitleTouchTap={this.reloadSite}
+                style={{cursor: 'pointer', background: '#00897B'}}
+            />;
         return (
             <header>
                 {
                     this.props.meta.width < 700 ?
-                        <AppBar
-                            title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home"
-                                                                                      aria-hidden="true"></i>
-                                BONDELIAFELTET</FontIcon>}
-                            showMenuIconButton={false}
-                            onTitleTouchTap={this.reloadSite}
-                            style={{cursor: 'pointer', background: '#00897B'}}
-                        /> : <AppBar style={{zIndex: -1, background: 'rgb(240, 240, 240)'}} zDepth={0} showMenuIconButton={false} />
+                        showBrandHeader
+                        : <AppBar style={{zIndex: -1, background: 'rgb(240, 240, 240)'}} zDepth={0}
+                                  showMenuIconButton={false}/>
                 }
                 <Tabs
                     onChange={this.props.handleChange}
@@ -63,7 +66,7 @@ export default class HeaderFooter extends Component {
                         opacity: this.state.opacity,
                         bottom: this.props.meta.width > 700 ? '' : 0,
                         top: this.props.meta.width > 700 ? 0 : '',
-                        zIndex: 1
+                        zIndex: 100
                     }}
 
                 >

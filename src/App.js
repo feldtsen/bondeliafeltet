@@ -23,7 +23,7 @@ const mainTheme = getMuiTheme({
     palette: {
         primary1Color: teal600,
         textColor: fullBlack,
-        secondaryTextColor: fade(fullWhite, 0.7),
+        secondaryTextColor: fade(fullBlack, 0.7),
         alternateTextColor: tealA400,
         canvasColor: 'rgba(255, 255, 255, 1)',
         borderColor: fade(fullWhite, 0.3),
