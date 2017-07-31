@@ -5,7 +5,12 @@ import FontIcon from 'material-ui/FontIcon';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 import AppBar from 'material-ui/AppBar';
-import {teal800, tealA400} from 'material-ui/styles/colors';
+import {teal800, tealA400, teal500} from 'material-ui/styles/colors';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Info from 'material-ui/svg-icons/action/info-outline';
+import Chat from 'material-ui/svg-icons/communication/chat';
+
 
 
 export default class HeaderFooter extends Component {
@@ -14,7 +19,12 @@ export default class HeaderFooter extends Component {
         this.state = {
             opacity: 1,
             pointerEvents: '',
-            y: 0
+            y: 0,
+            expanded: false,
+            menuOpacity: 0,
+            buttonTransform: 0,
+            menuPointerEvents: 'none'
+
         }
     }
 
@@ -25,6 +35,10 @@ export default class HeaderFooter extends Component {
     componentWillUnmount() {
         window.removeEventListener('scroll', this.scrollDirection);
     }
+
+    expandMenu = () => {
+      this.setState({expanded: !this.state.expanded, menuOpacity: this.state.menuOpacity === 1? 0 : 1, buttonTransform: this.state.buttonTransform === 0? 50: 0, menuPointerEvents: this.state.expanded? 'none':''});
+    };
 
     scrollDirection = () => {
         window.scrollY > this.state.y && window.scrollY > 0 ?
@@ -40,11 +54,12 @@ export default class HeaderFooter extends Component {
         let showBrandHeader;
         if (this.props.slideIndex === 0)
             showBrandHeader = <AppBar
-                title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i>BONDELIAFELTET</FontIcon>}
+                title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
                 showMenuIconButton={false}
                 onTitleTouchTap={this.reloadSite}
                 style={{cursor: 'pointer', background: '#00897B'}}
             />;
+
         return (
             <header>
                 {
@@ -74,7 +89,7 @@ export default class HeaderFooter extends Component {
                         this.props.meta.width > 700 ?
                             <Tab
                                 icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i>
-                                    Bondeliafeltet</FontIcon>}
+                                     Bondeliafeltet</FontIcon>}
                                 onActive={this.reloadSite}
                                 value={0}
                             />
@@ -93,6 +108,34 @@ export default class HeaderFooter extends Component {
                         label="Dokumenter"
                         value={2}/>
                 </Tabs>
+                {
+                    this.props.meta.width > 700 ?
+                    <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'2%' }}>
+                        <FloatingActionButton mini={true} backgroundColor='gray' style={{opacity: this.state.menuOpacity, transition: this.state.expanded?'.5s': '.3s',  transform: `translateY(${-this.state.buttonTransform * 2}%)`, pointerEvents: this.state.menuPointerEvents}}>
+                            <Info style={{fill: 'white'}}/>
+                        </FloatingActionButton><br/>
+                        <FloatingActionButton mini={true} backgroundColor={teal500} style={{opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${-this.state.buttonTransform}%)`, pointerEvents: this.state.menuPointerEvents}}>
+                            <Chat style={{fill: 'white'}}/>
+                        </FloatingActionButton><br/>
+                        <FloatingActionButton onTouchTap={this.expandMenu}>
+                            <ContentAdd style={{fill: 'white', transform: this.state.expanded?'rotate(135deg)': 'rotate(0deg)'}} />
+                        </FloatingActionButton>
+                    </div>
+                    :
+                        <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', opacity: this.state.opacity + 0.8, position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'2%' }}>
+                            <FloatingActionButton onTouchTap={this.expandMenu}>
+                                <ContentAdd style={{fill: 'white', transform: this.state.expanded?'rotate(135deg)': 'rotate(0deg)'}} />
+                            </FloatingActionButton> <br />
+                            <FloatingActionButton mini={true} backgroundColor={teal500} style={{pointerEvents: this.state.menuPointerEvents, opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${this.state.buttonTransform}%)`}}>
+                                <Chat style={{fill: 'white'}}/>
+                            </FloatingActionButton><br/>
+                            <FloatingActionButton mini={true} backgroundColor='gray' style={{pointerEvents: this.state.menuPointerEvents, opacity: this.state.menuOpacity, transition: this.state.expanded?'.5s': '.3s',  transform: `translateY(${this.state.buttonTransform * 2}%)`}}>
+                                <Info style={{fill: 'white'}}/>
+                            </FloatingActionButton>
+                        </div>
+                }
+
+
             </header>
         );
     }

@@ -23,6 +23,10 @@ body {
 }
 
 
+.buttonsContainer > div {
+  margin: .5em 0 .5em 0;
+}
+
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0;

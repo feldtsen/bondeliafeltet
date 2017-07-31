@@ -42,7 +42,7 @@ class App extends Component {
                 height: window.innerHeight,
             },
             slideIndex: 0,
-            admin: true
+            admin: false,
         }
     }
 
