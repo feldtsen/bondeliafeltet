@@ -1,33 +1,64 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Card} from 'material-ui/Card';
 import {Row, Col} from 'react-flexbox-grid';
 import {List, ListItem} from 'material-ui/List';
 import OpenInNew from 'material-ui/svg-icons/action/open-in-new';
+import Reveal from 'react-reveal'; // this package
+import 'animate.css/animate.css'; // CSS animation effects library
+import * as firebase from 'firebase';
 
 
-export default function Documents(props) {
-    return (
-        <Row around="xs" className='fadein'>
-            <Col xs={12} md={8}>
+export default class Documents extends Component {
+    constructor() {
+        super();
+        this.state = {
+            documentsDB: {}
+        }
+    }
 
-                {
-                    Object.keys(props.newsDB).reverse().map((newsId, i) => {
-                        let news = props.newsDB[newsId];
-                        return (
-                            <Card style={{marginBottom: '1em'}} key={`document${i}`}>
-                                <List style={{padding: 0}}>
-                                    <ListItem key={`news${i}`}
-                                              primaryText={news.title}
-                                              rightIcon={<OpenInNew />}
-                                              secondaryText={'filen var lastet opp ' + news.date}
-                                    />
-                                </List>
-                            </Card>
-                        )
-                    })
-                }
+    componentDidMount() {
+        this.getData();
+    }
 
-            </Col>
-        </Row>
-    )
+    getData = () => {
+        firebase.database().ref('maincontent/documents').on('value', snap => {
+            let documentsDB = snap.val() ? snap.val() : this.state.documentsDB;
+            this.setState({documentsDB: documentsDB});
+        });
+    };
+
+
+    render() {
+        return (
+            <Row around="xs" className='fadein'>
+                <Col xs={12} md={8}>
+
+                    {
+                        this.state.documentsDB ?
+                            Object.keys(this.state.documentsDB).reverse().map((documentId, i) => {
+                                let document = this.state.documentsDB[documentId];
+                                return (
+                                    <Reveal effect="animated fadeIn" key={`document${i}`}>
+                                        <Card style={{marginBottom: '1em'}}>
+                                            <List style={{padding: 0}}>
+                                                <a className="pdfLink" href={document.pdfUrl} target="_blank">
+                                                    <ListItem
+                                                        primaryText={document.title}
+                                                        rightIcon={<OpenInNew />}
+                                                        secondaryText={'filen var lastet opp ' + document.date}
+                                                    />
+                                                </a>
+                                            </List>
+                                        </Card>
+                                    </Reveal>
+                                )
+                            })
+                            :
+                            ''
+                    }
+
+                </Col>
+            </Row>
+        )
+    }
 }

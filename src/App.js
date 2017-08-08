@@ -9,6 +9,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {fade} from 'material-ui/utils/colorManipulator';
 import {fullWhite, fullBlack, teal600, tealA400} from 'material-ui/styles/colors';
 
+import PropTypes from 'prop-types';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -30,6 +31,9 @@ const mainTheme = getMuiTheme({
         disabledColor: fade(fullBlack, 0.3),
         pickerHeaderColor: fade(fullBlack, 0.12),
         clockCircleColor: fade(fullWhite, 0.12),
+    },
+    datePicker: {
+        textColor: fullBlack,
     }
 });
 
@@ -41,8 +45,9 @@ class App extends Component {
                 width: window.innerWidth,
                 height: window.innerHeight,
             },
+            chatOpen: false,
             slideIndex: 0,
-            admin: false,
+            admin: true
         }
     }
 
@@ -66,14 +71,27 @@ class App extends Component {
         this.setState({meta});
     };
 
+    toggleChat = () => {
+        this.setState({chatOpen: !this.state.chatOpen});
+    };
+
     render() {
         return (
             <MuiThemeProvider muiTheme={mainTheme}>
                 <div>
-                    <HeaderFooter meta={this.state.meta} handleChange={this.slideChanger}
-                                  slideIndex={this.state.slideIndex} />
-                    <MainContent meta={this.state.meta} handleChange={this.slideChanger}
-                                 slideIndex={this.state.slideIndex} news={this.state.newsDB} adminLoggedIn={this.state.admin}/>
+                    <HeaderFooter meta={this.state.meta}
+                                  handleChange={this.slideChanger}
+                                  slideIndex={this.state.slideIndex}
+                                  toggleChat={this.toggleChat}
+                    />
+                    <MainContent meta={this.state.meta}
+                                 handleChange={this.slideChanger}
+                                 slideIndex={this.state.slideIndex}
+                                 news={this.state.newsDB}
+                                 adminLoggedIn={this.state.admin}
+                                 toggleChat={this.toggleChat}
+                                 chatOpen={this.state.chatOpen}
+                    />
                 </div>
             </MuiThemeProvider>
         );

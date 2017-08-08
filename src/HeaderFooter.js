@@ -110,11 +110,11 @@ export default class HeaderFooter extends Component {
                 </Tabs>
                 {
                     this.props.meta.width > 700 ?
-                    <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'2%' }}>
+                    <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'4%' }}>
                         <FloatingActionButton mini={true} backgroundColor='gray' style={{opacity: this.state.menuOpacity, transition: this.state.expanded?'.5s': '.3s',  transform: `translateY(${-this.state.buttonTransform * 2}%)`, pointerEvents: this.state.menuPointerEvents}}>
                             <Info style={{fill: 'white'}}/>
                         </FloatingActionButton><br/>
-                        <FloatingActionButton mini={true} backgroundColor={teal500} style={{opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${-this.state.buttonTransform}%)`, pointerEvents: this.state.menuPointerEvents}}>
+                        <FloatingActionButton mini={true} backgroundColor={teal500} style={{opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${-this.state.buttonTransform}%)`, pointerEvents: this.state.menuPointerEvents}} onTouchTap={this.props.toggleChat}>
                             <Chat style={{fill: 'white'}}/>
                         </FloatingActionButton><br/>
                         <FloatingActionButton onTouchTap={this.expandMenu}>
@@ -122,11 +122,11 @@ export default class HeaderFooter extends Component {
                         </FloatingActionButton>
                     </div>
                     :
-                        <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', opacity: this.state.opacity + 0.8, position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'2%' }}>
+                        <div className="buttonsContainer" style={{transition: '.45s',textAlign: 'center', opacity: this.state.opacity + 0.8, position: 'fixed', right: '5%', zIndex: 5000,  bottom: this.props.meta.width > 700 ? '5%': '', top: this.props.meta.width > 700 ?'':'4%' }}>
                             <FloatingActionButton onTouchTap={this.expandMenu}>
                                 <ContentAdd style={{fill: 'white', transform: this.state.expanded?'rotate(135deg)': 'rotate(0deg)'}} />
                             </FloatingActionButton> <br />
-                            <FloatingActionButton mini={true} backgroundColor={teal500} style={{pointerEvents: this.state.menuPointerEvents, opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${this.state.buttonTransform}%)`}}>
+                            <FloatingActionButton mini={true} backgroundColor={teal500} style={{pointerEvents: this.state.menuPointerEvents, opacity: this.state.menuOpacity, transition: this.state.expanded?'.45s': '1s', transform: `translateY(${this.state.buttonTransform}%)`}} onTouchTap={this.props.toggleChat}>
                                 <Chat style={{fill: 'white'}}/>
                             </FloatingActionButton><br/>
                             <FloatingActionButton mini={true} backgroundColor='gray' style={{pointerEvents: this.state.menuPointerEvents, opacity: this.state.menuOpacity, transition: this.state.expanded?'.5s': '.3s',  transform: `translateY(${this.state.buttonTransform * 2}%)`}}>
