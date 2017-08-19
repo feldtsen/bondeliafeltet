@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import './App.css';
-import FontIcon from 'material-ui/FontIcon';
 
+import FontIcon from 'material-ui/FontIcon';
 
 import {Tabs, Tab} from 'material-ui/Tabs';
 import AppBar from 'material-ui/AppBar';
@@ -51,23 +50,14 @@ export default class HeaderFooter extends Component {
     };
 
     render() {
-        let showBrandHeader;
-        if (this.props.slideIndex === 0)
-            showBrandHeader = <AppBar
-                title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>}
-                showMenuIconButton={false}
-                onTitleTouchTap={this.reloadSite}
-                style={{cursor: 'pointer', background: '#00897B'}}
-            />;
+        let showBrandHeader, clickableBrandHeader;
+        if (this.props.slideIndex === 0) showBrandHeader = <AppBar title={<FontIcon style={{color: 'rgb(255, 255, 255)'}}><i className="fa fa-home" aria-hidden="true"></i> BONDELIAFELTET</FontIcon>} showMenuIconButton={false} onTitleTouchTap={this.reloadSite} style={{cursor: 'pointer', background: '#00897B'}}/>;
+
+        if(this.props.meta.width > 700) clickableBrandHeader = <Tab icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i> Bondeliafeltet</FontIcon>} onActive={this.reloadSite} value={0}/>;
 
         return (
             <header>
-                {
-                    this.props.meta.width < 700 ?
-                        showBrandHeader
-                        : <AppBar style={{zIndex: -1, background: 'rgb(240, 240, 240)'}} zDepth={0}
-                                  showMenuIconButton={false}/>
-                }
+                {this.props.meta.width < 700 ? showBrandHeader : <AppBar style={{zIndex: -1, background: 'rgb(240, 240, 240)'}} zDepth={0} showMenuIconButton={false}/>}
                 <Tabs
                     onChange={this.props.handleChange}
                     value={this.props.slideIndex}
@@ -85,28 +75,13 @@ export default class HeaderFooter extends Component {
                     }}
 
                 >
+                    {clickableBrandHeader}
                     {
-                        this.props.meta.width > 700 ?
-                            <Tab
-                                icon={<FontIcon><i className="fa fa-home" aria-hidden="true"></i>
-                                     Bondeliafeltet</FontIcon>}
-                                onActive={this.reloadSite}
-                                value={0}
-                            />
-                            : ''
+                        [{iconClass: 'fa fa-newspaper-o', label: 'Nyheter', value: 0},{iconClass: 'fa fa-calendar', label: 'Datoer', value: 1},{iconClass: 'fa fa-file-text', label: 'Dokumenter', value: 2}].map(tab=>{
+                            return(<Tab key={tab.label} icon={<FontIcon><i className={tab.iconClass} aria-hidden="true"></i></FontIcon>} label={tab.label} value={tab.value}/>)
+                        })
                     }
-                    <Tab
-                        icon={<FontIcon><i className="fa fa-newspaper-o" aria-hidden="true"></i></FontIcon>}
-                        label="Nyheter"
-                        value={0}/>
-                    <Tab
-                        icon={<FontIcon><i className="fa fa-calendar" aria-hidden="true"></i></FontIcon>}
-                        label="Datoer"
-                        value={1}/>
-                    <Tab
-                        icon={<FontIcon><i className="fa fa-file-text" aria-hidden="true"></i></FontIcon>}
-                        label="Dokumenter"
-                        value={2}/>
+
                 </Tabs>
                 {
                     this.props.meta.width > 700 ?

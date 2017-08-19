@@ -18,10 +18,9 @@ body {
 }
 
 .mediaImage {
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 40em;
 }
 
 .pdfLink {
@@ -31,6 +30,14 @@ body {
 .buttonsContainer > div {
     margin: .5em 0 .5em 0;
 }
+
+
+/*CHAT*/
+
+
+
+/*END CHAT*/
+
 
 @-webkit-keyframes fade-in {
     0% {

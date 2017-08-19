@@ -12,7 +12,7 @@ export default class AddNews extends Component {
         this.state = {
             selectedDate: '',
             title: '',
-            text: ''
+            text: '',
         }
     }
 
@@ -40,12 +40,13 @@ export default class AddNews extends Component {
 
 
     render() {
-        const actions = [
+        const {toggle, open, width} = this.props,
+            actions = [
             <FlatButton
                 label="Avbryt"
                 primary={true}
                 style={{color: 'red'}}
-                onTouchTap={this.props.toggle}
+                onTouchTap={toggle}
             />,
             <FlatButton
                 label="Legg til datoen"
@@ -54,7 +55,7 @@ export default class AddNews extends Component {
             />,
         ];
         return (
-            <Dialog title="Legg til en dato" modal={true} open={this.props.open} actions={actions}
+            <Dialog title="Legg til en dato" modal={true} open={open} actions={actions}
                     repositionOnUpdate={false}
                     autoDetectWindowHeight={false}
                     autoScrollBodyContent={false}
@@ -62,6 +63,7 @@ export default class AddNews extends Component {
                         width: '100%',
                     }}
                     >
+                <p style={{color:'orange'}}>* du må fylle alle feltene for å legge til datoen</p>
                 {
                     [
                         {name: 'title', label: 'Tittel til hendelsen', hint: 'Dugnad i Bondeliafeltet...'},
@@ -86,6 +88,8 @@ export default class AddNews extends Component {
                 <DatePicker floatingLabelText={'Velg dato'} name='selectedDate'
                             onChange={(e, date) => this.setDate(e, date)} autoOk={true}
                             minDate={new Date(2016, 0, 1)}
+                            container={width > 700? 'inline' : 'dialog'}
+                            mode='landscape'
 
                 />
             </Dialog>

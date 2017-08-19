@@ -1,18 +1,17 @@
 import React, {Component} from 'react';
-import './App.css';
-
+import propTypes from 'prop-types';
 
 import News from './Pages/News';
-import Calendar from './Pages/Calendar'
-import Documents from './Pages/Documents'
-import ChatRoom from './Pages/ChatRoom'
-import AddNews from './Tools/AddNews';
-import AddDocument from './Tools/AddDocument'
-import AddDate from './Tools/AddDate'
-import AdminActions from './Tools/AdminActions'
+import Calendar from './Pages/Calendar';
+import Documents from './Pages/Documents';
+import ChatRoom from './Pages/ChatRoom';
+import User from './Pages/User';
 
-import 'animate.css/animate.css'; // CSS animation effects library
-import Reveal from 'react-reveal';
+import AddNews from './Tools/AddNews';
+import AddDocument from './Tools/AddDocument';
+import AddDate from './Tools/AddDate';
+import AdminActions from './Tools/AdminActions';
+import Confirm from './Tools/Confirm';
 
 import {Grid} from 'react-flexbox-grid';
 
@@ -28,17 +27,23 @@ export default class MainContent extends Component {
                 addDocumentOpen: false,
                 addDateOpen: false
             },
-            newsDB: {0:{}, 1:{}, 2:{}},
+            setInfo: {
+                path: '',
+                id: '',
+                confirmationPopup: false
+            },
+            newsDB: {0:{}, 1:{}, 2:{title: 'Vær vennlig og vent', date: new Date(), text: 'Hvis du leser dette, holder innholdet på å bli lastet inn. Normalt tar ikke dette lang tid.'}},
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
 
         const db = firebase.database(),
             maincontent = db.ref().child('maincontent');
 
         maincontent.on('value', snap => {
-            let newsDB = snap.val() ? snap.val().news : this.state.newsDB;
+            let newsDB = snap.val().news;
+            if(newsDB === undefined) newsDB = this.state.newsDB;
             this.setState({newsDB: newsDB});
         });
     }
@@ -61,46 +66,69 @@ export default class MainContent extends Component {
         this.setState({popup});
     };
 
+    toggleDeleteConfirmation = () => {
+        const popup = this.state.setInfo;
+        popup.confirmationPopup = !popup.confirmationPopup;
+        this.setState({popup});
+    };
+
+    confirmDeletion = () => {
+        const {path, id} = this.state.setInfo;
+        this.toggleDeleteConfirmation();
+        firebase.database().ref(`maincontent/${path}/${id}`).remove();
+    };
+
+    setInfo = (path, id) => {
+        const setInfo = this.state.setInfo;
+        setInfo.path = path;
+        setInfo.id = id;
+        setInfo.confirmationPopup = true;
+        this.setState({setInfo});
+    };
+
     render() {
-        console.log(this.props.chatOpen);
 
-        const index = this.props.slideIndex;
-        const popup = this.state.popup;
+        const
+        {addNewsOpen, addDocumentOpen, addDateOpen}   = this.state.popup,
+        {newsDB, datesDB, setInfo}                    = this.state,
+        {adminLoggedIn, slideIndex, meta, userInfo}   = this.props;
 
-        let page, tool, admin, chat;
+        let page, tool, admin, chat, user;
 
-        if (index === 0)                    page = <News newsDB={this.state.newsDB}/>;
-        else if (index === 1)               page = <Calendar newsDB={this.state.newsDB} width={this.props.meta.width} height={this.props.meta.height} datesDB={this.state.datesDB} allDates={this.state.allDates}/>;
-        else if (index === 2)               page = <Documents newsDB={this.state.newsDB}/>;
+        if (slideIndex === 0)                   page = <News      newsDB={newsDB} adminLoggedIn={adminLoggedIn} setDeleteInfo={this.setInfo} confirmDeletion={this.confirmDeletion} toggleConfirm={this.toggleDeleteConfirmation} meta={meta}/>;
+        else if (slideIndex === 1)              page = <Calendar  newsDB={newsDB} width={meta.width} height={meta.height} datesDB={datesDB} />;
+        else if (slideIndex === 2)              page = <Documents newsDB={newsDB}/>;
 
-        if (popup.addNewsOpen)              tool = <AddNews open={this.state.popup.addNewsOpen} toggle={this.toggleAddNews} />;
-        else if (popup.addDocumentOpen)     tool = <AddDocument open={this.state.popup.addDocumentOpen} toggle={this.toggleAddDocument}/>;
-        else if (popup.addDateOpen)         tool = <AddDate open={this.state.popup.addDateOpen} toggle={this.toggleAddDate} />;
+        if (addNewsOpen)                        tool = <AddNews       open={addNewsOpen} toggle={this.toggleAddNews} />;
+        else if (addDocumentOpen)               tool = <AddDocument   open={addDocumentOpen} toggle={this.toggleAddDocument}/>;
+        else if (addDateOpen)                   tool = <AddDate       open={addDateOpen} toggle={this.toggleAddDate} width={meta.width}/>;
+        else if (setInfo.confirmationPopup)     tool = <Confirm       open={setInfo.confirmationPopup} toggleDeleteConfirmation={this.toggleDeleteConfirmation} confirmDeletion={this.confirmDeletion}/>;
 
-        if (this.props.adminLoggedIn)       admin = <AdminActions width={this.props.meta.width} toggleAddNews={this.toggleAddNews} toggleAddDate={this.toggleAddDate} toggleAddDocument={this.toggleAddDocument} page={index}/>;
+        if (this.props.adminLoggedIn)           admin = <AdminActions width={meta.width} toggleAddNews={this.toggleAddNews} toggleAddDate={this.toggleAddDate} toggleAddDocument={this.toggleAddDocument} page={slideIndex}/>;
 
-        if (this.state.chatOpen)            chat = <ChatRoom/>;
+        if (this.props.chatOpen)                chat = <ChatRoom />;
+
+        user = <User userInfo={userInfo}/>;
 
         return (
-            <main className={this.props.chatOpen? 'notPushed pushed': 'notPushed'} >
-                <Grid fluid style={{marginTop: '2%'}}>
-                    {
-                        admin
-                    }
-                    {
-                        page
-                    }
+            <main>
+                <Grid fluid style={{marginTop: '1em'}}>
+                    {admin}
+                    {user}
+                    {page}
                 </Grid>
-                <Reveal effect="animations fadeIn">
-                    {
-                        chat
-                    }
-                </Reveal>
-                {
-                    tool
-                }
+                <div>
+                    {chat}
+                </div>
+                {tool}
             </main>
         );
     }
 }
+
+News.propTypes = {
+    newsDB: propTypes.object.isRequired,
+    adminLoggedIn: propTypes.bool.isRequired,
+    setDeleteInfo: propTypes.func
+};
 

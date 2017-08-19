@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 
 import HeaderFooter from './HeaderFooter';
 import MainContent from './MainContent'
@@ -9,7 +8,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {fade} from 'material-ui/utils/colorManipulator';
 import {fullWhite, fullBlack, teal600, tealA400} from 'material-ui/styles/colors';
 
-import PropTypes from 'prop-types';
+import * as firebase from 'firebase';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -47,12 +46,39 @@ class App extends Component {
             },
             chatOpen: false,
             slideIndex: 0,
-            admin: true
+            admin: false,
+            loginUser: {
+                email: 'joaoepe@outlook.com',
+                password: 'password123',
+            },
+            userInfo: {
+                email: '',
+                uid: ''
+            }
         }
     }
 
     componentDidMount() {
+        this.loginToWebsite();
         window.addEventListener("resize", this.responsiveUpdater, {passive: true});
+
+        firebase.auth().onAuthStateChanged(user=> {
+            if (user) {
+                const {email, uid} = user,
+                    userInfo = this.state.userInfo;
+                userInfo.email = email;
+                userInfo.uid = uid;
+                console.log(`Email: ${email}, UID: ${uid}`);
+
+                this.setState({userInfo});
+                // User is signed in.
+                // ...
+            } else {
+                // User is signed out.
+                // ...
+                console.log('signed out');
+            }
+        });
     }
 
     componentWillUnmount() {
@@ -75,6 +101,18 @@ class App extends Component {
         this.setState({chatOpen: !this.state.chatOpen});
     };
 
+    loginToWebsite = () => {
+        const {email, password} = this.state.loginUser;
+        firebase.auth().signInWithEmailAndPassword(email, password).catch( error => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ...
+            console.log(`Error code is -> ${errorCode}, and the error message is -> ${errorMessage} `);
+        });
+    };
+
+
     render() {
         return (
             <MuiThemeProvider muiTheme={mainTheme}>
@@ -91,6 +129,7 @@ class App extends Component {
                                  adminLoggedIn={this.state.admin}
                                  toggleChat={this.toggleChat}
                                  chatOpen={this.state.chatOpen}
+                                 userInfo={this.state.userInfo}
                     />
                 </div>
             </MuiThemeProvider>

@@ -36,7 +36,6 @@ export default class AddNews extends Component {
         }
     };
 
-
     render() {
         const actions = [
             <FlatButton
@@ -60,6 +59,7 @@ export default class AddNews extends Component {
                         width: '100%',
                     }}
             >
+                <p style={{color:'orange'}}>* du må fylle alle feltene for å legge til nyheten</p>
                 {
                     [
                         {name: 'title', label: 'Legg til en tittel', hint: 'Bygging av lekeplass pågår...'},

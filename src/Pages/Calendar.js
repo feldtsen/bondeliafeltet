@@ -26,14 +26,14 @@ export default class AddNews extends Component {
     }
 
 
-    componentDidMount() {
+    componentWillMount() {
         this.getData();
     }
 
     getData = () => {
         firebase.database().ref('maincontent/dates').on('value', snap => {
             let datesDB = snap.val() ? snap.val() : this.state.datesDB;
-            setTimeout(this.getAllDates(datesDB), 100);
+            this.getAllDates(datesDB);
         });
     };
 
@@ -69,7 +69,7 @@ export default class AddNews extends Component {
         const info = this.state.selectedDateInfo;
         return (
             <Row around="xs" className='fadeinNormal'>
-                <Col xs={12} md={8} >
+                <Col style={{transition: '0.5s'}} xs={12} md={10} lg={8}>
                     <Dialog style={{textAlign: 'justify',
                         textJustify: 'inter-word'}} open={this.state.infoOpen} title={`${info.title}`} onRequestClose={this.close} modal={false}
                             contentStyle={{
@@ -98,9 +98,7 @@ export default class AddNews extends Component {
                             Component={MultipleDatesCalendar}
                             interpolateSelection={defaultMultipleDateInterpolation}
                             selected={this.state.allDates}
-                            onSelect={ date => {
-                                this.checkForEvent(date);
-                            }}
+                            onSelect={ date => {this.checkForEvent(date);}}
                             width={'100%'}
                             height={this.props.width > 700 ? this.props.height * .68 : this.props.height * .55}
                         />

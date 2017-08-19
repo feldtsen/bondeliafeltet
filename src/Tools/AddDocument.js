@@ -50,7 +50,14 @@ export default class AddDocument extends Component {
             />,
         ];
         return (
-            <Dialog title="Legg til et dokument" modal={true} open={this.props.open} actions={actions}>
+            <Dialog title="Legg til et dokument" modal={true} open={this.props.open} actions={actions}
+                    repositionOnUpdate={false}
+                    autoDetectWindowHeight={false}
+                    autoScrollBodyContent={false}
+                    contentStyle={{
+                        width: '100%',
+                    }}>
+                <p style={{color:'orange'}}>* du må fylle alle feltene for å legge til dokumentet</p>
                 {
                     [
                         {name: 'title', label: 'Legg til navnet på dokumentet', hint: 'Referat årsmøte, aug 2017'},
