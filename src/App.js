@@ -48,8 +48,8 @@ class App extends Component {
             slideIndex: 0,
             admin: false,
             loginUser: {
-                email: 'joaoepe@outlook.com',
-                password: 'password123',
+                email: '',
+                password: '',
             },
             userInfo: {
                 email: '',
